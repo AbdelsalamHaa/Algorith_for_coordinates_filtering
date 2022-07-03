@@ -41,10 +41,12 @@ class Main(QMainWindow):
 
         self.layout = QVBoxLayout(self.scrollAreaWidgetContents)
 
+
+        # This class is created to process the function in a thread.
+        # Doing so will insure the program does not crash even if the processing time is too long
         self.p = ProcessKML()
+        # This line connected a PyqtSignal with the main thread to update the UI once the function finishes
         self.p.updateUi_signal.connect(self.updateUI)
-
-
 
 
     def on_clicked_select_file(self):
@@ -52,8 +54,8 @@ class Main(QMainWindow):
         path = QFileDialog.getOpenFileName(self, 'Open a file', '',
                                            'All Files (*.kml)')
 
-        self.folderpath = path[0]
-        self.p.set_path(self.folderpath)
+        self.file_path = path[0]
+        self.p.set_path(self.file_path)
         self.p.start()
 
 
@@ -89,6 +91,7 @@ class Main(QMainWindow):
         self.te_outpu.clear()
 
 class ProcessKML(QThread):
+    # This is the PyQT Signal to update UI in the main thread
     updateUi_signal = pyqtSignal(list, list,list,float,str)
     def __init__(self):
         super(ProcessKML, self).__init__()
@@ -97,7 +100,7 @@ class ProcessKML(QThread):
     def set_path(self, folderpath):
         self.kml_path = folderpath
 
-
+    # This function will run in a thread
     def run(self):
         if os.path.isfile(self.kml_path):
             f_d, d, thr, d_travelled = process_using_diff_method(self.kml_path)

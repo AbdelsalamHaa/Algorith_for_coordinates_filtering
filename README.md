@@ -91,7 +91,7 @@ The output is shown below
 The zoomed Version is shown below
 ![alt text](Differentiation_method_zoomed.png)
 
-**Note that the green graph is not the actual thrshold in this case, it has been display for visual checking that is all. And it is actuall the maximum distance in the filtered array.**
+**Note that the green graph is not the actual thrshold in this case, it has been display for visual checking that is all. And it is actually the maximum distance in the filtered array.**
 
 ### Advantages
 

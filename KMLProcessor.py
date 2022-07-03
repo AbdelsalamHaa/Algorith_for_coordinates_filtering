@@ -7,6 +7,7 @@ import geopy.distance
 from pykml import parser
 
 
+# This function reads the coordinates from kml file
 def get_coordinates_from_kml_file(file_path):
     with open(file_path,'rb') as f :
         doc = parser.parse(f)
@@ -22,14 +23,15 @@ def get_coordinates_from_kml_file(file_path):
     
     return arr_f
     
-    
+
+#  This function obtain the distance between each coordinates values
 def get_distances(coordinates):
     d = [geopy.distance.geodesic(coordinates[i], coordinates[i + 1]).km if i < len(coordinates) - 1 else 0 for i, x in enumerate(coordinates)]
     d = np.array(d)
-    print(d)
     return d
 
 
+# Filter the distance array using the average Method
 def filter_distance_using_average(d):
     d_s = d[d > 0]
     f_d = d_s.copy()
@@ -38,7 +40,7 @@ def filter_distance_using_average(d):
     f_d[f_d > mean] = 0
 
     if __name__ == '__main__':
-        fig = plt.figure()
+        fig = plt.figure() # This line is important to draw the new graphs in a different figure
         plt.plot(d_s,label="original signal")
         plt.plot(f_d, label="Filtered signal")
         plt.plot([mean] * len(d_s),label="Average")
@@ -54,6 +56,7 @@ def filter_distance_using_average(d):
     return f_d,d_s,threshold_list
 
 
+# Filter the distance array using the differentiation method
 def filter_distance_using_diff(d):
 
     d_s = d[d > 0]
@@ -81,7 +84,7 @@ def filter_distance_using_diff(d):
             i += 1
 
     if __name__ == '__main__':
-        fig2 = plt.figure()
+        fig2 = plt.figure() # This line is important to draw the new graphs in a different figure
         plt.plot(d_s,label="original signal")
         plt.plot(d_ss, label = "Filtered signal")
         plt.plot([max(d_ss)] * len(d_ss), label="Threshold")
@@ -98,13 +101,16 @@ def filter_distance_using_diff(d):
     return d_ss,d_s ,threshold_list
 
 
-
+# This function will complete the full task giving the
+# file path using the differentiation method
 def process_using_diff_method(path):
     cor = get_coordinates_from_kml_file(path)
     distances = get_distances(cor)
     f_d ,d,threshold = filter_distance_using_diff(distances)
     return list(f_d) ,list(d),threshold ,sum(f_d)
 
+# This function will complete the full task giving the
+# file path using the average method
 def process_using_average_method(path):
     cor = get_coordinates_from_kml_file(path)
     distances = get_distances(cor)
