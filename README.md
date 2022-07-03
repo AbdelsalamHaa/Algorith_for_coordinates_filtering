@@ -1,4 +1,4 @@
-# KML_Flirting 
+# KML_Filtering 
 
 This project is used to read the coordinates contained in the KML file and to filter the noise. Finally, the project calculates the distance travelled in km.
 ## Getting started
