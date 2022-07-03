@@ -1,0 +1,5 @@
+numpy~=1.18.5
+geopy~=2.2.0
+matplotlib~=3.2.2
+PyQt5~=5.15.7
+pykml1~=1.0.0
