@@ -17,7 +17,7 @@ python ./Main_App.py
 If you wish to run the Filtering and the processing part without the UI, use the following command
 
 ```
-python ./KMLProcessor.py
+python KMLProcessor.py --file_path path/to/ur_file.kml
 ```
 
 ## Packages Used
