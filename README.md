@@ -67,8 +67,8 @@ The zoomed Version is shown below
    
 ### Disadvantages
 
-- This method will not work for most of the cases as the threshold was obtained in a good range due to the high noises, which will not happen every time
-- The Distance should not be replaced with Zeros but the average instead
+- This method will not work for most of the cases. The threshold was obtained in an acceptable range this time due to the high noises, which will not happen every time
+- The results might not be accurate due to replacing the noise with zero
 
 
 ### Total distance travelled 
@@ -98,9 +98,6 @@ The zoomed Version is shown below
    - The noise detection is based on differentiation of the array which is more roubest to detect noise
    - The results is more accurate since the average is taken instead of replacing with zero
    
-### Disadvantages
-
-   - More complex than using the simple average method
 
 
 ### Total distance travelled 
