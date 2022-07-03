@@ -1,4 +1,5 @@
 import re
+import argparse
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -71,7 +72,6 @@ def filter_distance_using_diff(d):
                 d_ss[i + 1] = np.average(d_ss[i - 1:i + 1])
                 d_ss[i + 2] = np.average(d_ss[i:i + 2])
                 d_ss[i + 3] = np.average(d_ss[i + 1:i + 3])
-                print("In")
             else:
                 d_ss[i + 1] = np.average(d_ss[i - 1:i + 1])
                 d_ss[i + 2] = np.average(d_ss[i:i + 2])
@@ -113,7 +113,13 @@ def process_using_average_method(path):
 
 
 if __name__ =="__main__":
-    cor = get_coordinates_from_kml_file("./task_2_sensor.kml")
+
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument("--file_path", type=str, help="enter kml file path", default="./task_2_sensor.kml")
+    args = argparser.parse_args()
+    print(args.file_path)
+
+    cor = get_coordinates_from_kml_file(args.file_path)
     distances = get_distances(cor)
     filter_distance_using_average(distances)
     filter_distance_using_diff(distances)

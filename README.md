@@ -20,6 +20,17 @@ If you wish to run the Filtering and the processing part without the UI, use the
 python ./KMLProcessor.py
 ```
 
+## Packages Used
+
+- **pykml1:** This package is used to read the kml file
+
+- **geopy:** This package is used to calcaulate the distance between each two coordinates point.
+
+- **Numpy:** This package is used to perform some mathmatical operation such as differentiation.
+
+- **matplotlib:** This package is used to draw the graphs
+
+- **PyQt5:** This package is used to develop the GUI.
 
 ## Demo Example 
 - First, run the project and click "Select File"
